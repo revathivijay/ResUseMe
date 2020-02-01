@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Bootstrap Example</title>
+    <title>RESUSEME</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -11,13 +11,17 @@
     <style>
         /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
         .row.content {
-            height: 550px
+            height: 650px
         }
 
         /* Set gray background color and 100% height */
         .sidenav {
+            background-image: url("./../static/images/bg_6.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
             background-color: #f1f1f1;
             height: 100%;
+            image-orientation: 0deg;
         }
 
         /* On small screens, set height to 'auto' for the grid */
@@ -32,9 +36,58 @@
             height: 50px;
         }
 
-        .btn-success {
+        .btn {
             margin-top: 50px;
         }
+
+        .form-control {
+            font-size: 15px;
+            margin-top:30px;
+        }
+
+        #filters {
+            height: 40px;
+            width: 300px;
+            border-radius: 5px;
+        }
+        .skill_item_class{
+            border:3px solid red;
+            margin:10px;
+            height:3em;
+            border-radius: 30px;
+            text-align:center;
+
+        }
+
+        .cancel_btn {
+            border: hidden;
+            background-color: #ffffff;
+            font-size:medium;
+            text-align:center;
+            margin-top:6px;
+            border-radius:50px;
+        }
+
+        .add_btn {
+            border: 2px solid;
+            background-color: #ffffff;
+            font-size: medium;
+            text-align: center;
+            
+            border-radius: 50px;
+            height:40px;
+            width:40px;
+        }
+        #add_btn_1 {
+            margin-top:10px;
+        }
+
+
+        .skill_para{
+            padding-top:8px;
+        }
+
+       
     </style>
 </head>
 <body>
@@ -46,61 +99,48 @@
                 <form method="POST" action="">
                     {{ form.hidden_tag() }}
                     <div class="row">
-                    <div class="col-sm-8">
-                        {{ form.job_post.label(class="form-control-label") }}
-                    {% if form.job_post.errors %}
-                        {{ form.job_post(class="form-control form-control-lg is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.job_post.errors %}
+                        <div class="col-sm-8">
+                            {{ form.job_post.label(class="form-control-label") }}
+                            {% if form.job_post.errors %}
+                            {{ form.job_post(class="form-control form-control-lg is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.job_post.errors %}
                                 <span>{{ error }}</span>
-                            {% endfor %}
+                                {% endfor %}
+                            </div>
+                            {% else %}
+                            {{ form.job_post(class="form-control form-control-lg") }}
+                            {% endif %}
                         </div>
-                    {% else %}
-                        {{ form.job_post(class="form-control form-control-lg") }}
-                    {% endif %}
+                        <div class="form-group">
+                            {{ form.submit(class="btn btn-outline-info") }}
+                        </div>
                     </div>
-                    <div class="form-group">
-                        {{ form.submit(class="btn btn-outline-info") }}
-                    </div>
-                </div>
+
+                    <p>
+                        {{form.filters(class="dropdown-toggle")}}
+                    </p>
                 </form>
+
 
             </div>
             <br>
 
             <div class="col-sm-9">
-                <div class="well card">
+                <div id="job_post_name" class="well">
                     <h4>Dashboard</h4>
                     <p>Some text..</p>
                 </div>
                 
-                <div class="row">
-                    <div class="col-sm-4">
-                        <div class="well">
-                            <p>Text</p>
-                            <p>Text</p>
-                            <p>Text</p>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="well">
-                            <p>Text</p>
-                            <p>Text</p>
-                            <p>Text</p>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="well">
-                            <p>Text</p>
-                            <p>Text</p>
-                            <p>Text</p>
-                        </div>
-                    </div>
+                <div class="row" id="skill_id">
+                    
                 </div>
                 
             </div>
         </div>
     </div>
+
+    <script type="text/javascript" language="javascript" src="./../static/temp.js"></script>
 
 </body>
 </html>
