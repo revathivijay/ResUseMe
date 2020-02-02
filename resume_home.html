@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>RESUSEME</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="./../static/resume_home.css" />
+
+    <script>
+    $(function () {
+            var tags = ['Advocate', 'Arts', 'Automation Testing', 'Blockchain', 'Business Analyst', 'Civil Engineer', 'Data Science', 'Database', 'DevOps Engineer', 'DotNet Developer', 'ETL Developer', 'Electrical Engineering', 'HR', 'Hadoop', 'Health and fitness', 'Java Developer', 'Mechanical Engineer', 'Network Security Engineer', 'Operations Manager', 'PMO', 'Python Developer', 'SAP Developer', 'Sales', 'Testing', 'Web Development'];
+            $("#job_post").autocomplete({
+                source: tags
+
+
+            });
+        });</script>
+    <script src="http://code.jquery.com/ui/1.12.0-rc.2/jquery-ui.js"></script>
+
+
+    <style>
+
+
+        html * {
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+
+        /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+        .row.content {
+            height: 650px
+        }
+
+        /* Set gray background color and 100% height */
+        .sidenav {
+            background-image: url("./../static/images/bg_6.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-color: #f1f1f1;
+            height: 100%;
+            image-orientation: 0deg;
+        }
+
+        /* On small screens, set height to 'auto' for the grid */
+        @media screen and (max-width: 767px) {
+            .row.content {
+                height: auto;
+            }
+        }
+
+        .form-control-borderless {
+            margin-top: 50px;
+            height: 50px;
+        }
+
+        .btn {
+            margin-top: 30px;
+        }
+
+        .form-control {
+            font-size: 15px;
+            margin-top: 30px;
+
+            width: 250px;
+        }
+
+        #filters {
+            height: 40px;
+            width: 300px;
+            border-radius: 5px;
+            background-color: #ffffff;
+            padding-left: 3px;
+            box-shadow: 5px 5px;
+            margin-top:35px;
+        }
+
+        .skill_item_class {
+            border: 2px solid red;
+            margin: 4px;
+            height: 3em;
+            border-radius: 30px;
+            text-align: center;
+        }
+
+
+        .skill_item_subclass {
+            width: fit-content;
+        }
+
+        .cancel_btn {
+            border: hidden;
+            background-color: #ffffff;
+            font-size: medium;
+            text-align: center;
+            margin-top: 6px;
+            border-radius: 50px;
+        }
+
+        .add_skill_button {
+            border: 2px solid #1491c8;
+            border-radius: 57px;
+            margin: 4px;
+            height: 3em;
+        }
+
+        .add_btn {
+            border: hidden;
+            background-color: #ffffff;
+            font-size: medium;
+            text-align: center;
+            margin-top: 6px;
+            border-radius: 50px;
+        }
+
+        #skill_id {
+            display: flex;
+            flex-flow: row wrap;
+            margin-left: 10px;
+            margin-top: 15px;
+        }
+
+        .skill_para {
+            align-content: center;
+            margin-top: 8px;
+            width: fit-content;
+        }
+
+        #add_skill_input {
+            margin-top: 10px;
+            margin-left: 5px;
+            border: hidden;
+        }
+
+        *:focus {
+            outline: none;
+        }
+
+        .job_post_class {
+            margin-top: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            font-size: 18px;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+
+        #job_post {
+            box-shadow: 5px 5px;
+        }
+
+
+        .input-img {
+            margin-left: 30px;
+            background-image: url("./../static/images/search.jfif");
+            background-color: #337ab7; /* make the button transparent */
+            background-repeat: no-repeat; /* make the background image appear only once */
+            box-shadow: 5px 5px;
+            margin-top: 51px;
+            width: fit-content;
+            height: 34px;
+            background-size: 29px;
+            border-radius: 20px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container-fluid">
+        <div class="row content">
+            <div class="col-sm-3 sidenav">
+                <form method="POST" action="">
+                    {{ form.hidden_tag() }}
+                    <div class="row">
+                        <div class="col-sm-8">
+                            {{ form.job_post.label(class="form-control-label") }}
+                            {% if form.job_post.errors %}
+                            {{ form.job_post(class="form-control form-control-lg is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.job_post.errors %}
+                                <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                            {% else %}
+                            {{ form.job_post(class="form-control form-control-lg") }}
+                            {% endif %}
+                        </div>
+
+                        <input type="button" class="input-img col-sm-3" onclick="fun()" />
+
+                        <script>
+                            function fun() {
+                                $.ajax({
+                                    data: {
+                                        vs: 'hi',
+                                        filter_name:'',
+                                        job_post_result:''
+                                    },
+                                    type: 'POST',
+                                    url: 'http://127.0.0.1:5000/temp',
+                                    success: function (response) {
+                                        console.log('Success');
+                                        document.getElementById('job_post').value = response.job_post
+                                    },
+                                });
+
+                                console.log('Completed');
+
+                                event.preventDefault();
+                            }</script>
+
+
+
+                    </div>
+
+                    <p>
+                        {{form.filters(class="dropdown-toggle")}}
+                    </p>
+
+                    <div class="form-group">
+                        {{ form.submit(class="btn btn-outline-info") }}
+                    </div>
+                </form>
+
+            </div>
+            <br>
+            <div class="col-sm-9">
+                <div id="welcome" class="card job_post_class">
+                    <h4>WELCOME</h4>
+                    <p>START SEARCHING FOR CANDIDATES</p>
+                </div>
+
+                <div id="job_post_name" class="card job_post_class">
+                    <h4>JOB POST</h4>
+                    <p>SKILLS</p>
+                </div>
+
+                <div class="row page_break_test" id="skill_id">
+
+                </div>
+                <div id="resukts"></div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <script type="text/javascript" language="javascript" src="./../static/temp.js"></script>
+</body>
+</html>
