@@ -1,3 +1,7 @@
+
+import names
+
+
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 import html2text
@@ -15,27 +19,28 @@ chrome_options.binary_location = CHROME_PATH
 driver = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH,
                           chrome_options=chrome_options
                          )
+driver = webdriver.Chrome('C:/Program Files/chromedriver')
 h = html2text.HTML2Text()
-job_title="fashion designer" #hardcoded for now
-job_split = job_title.split()
-job_title = job_title.replace(' ', '%20')
-driver.get('https://www.livecareer.com/resume-search/search?jt='+job_title)
-content = driver.page_source
-soup = bs4.BeautifulSoup(content, 'lxml')
-links=  []
-for link in soup.findAll('a'):
+def scraper(job_title):
+    #job_title="fashion designer" #hardcoded for now
+    job_split = job_title.split()
+    job_title = job_title.replace(' ', '%20')
+    driver.get('https://www.livecareer.com/resume-search/search?jt='+job_title)
+    content = driver.page_source
+    soup = bs4.BeautifulSoup(content, 'lxml')
+    links= []
+    for link in soup.findAll('a'):
+        if(link.has_attr('href')):
+            for k in job_split:
+                if(k.lower() in link['href']):
+                    links.append('https://www.livecareer.com'+link['href'])
+                    print('https://www.livecareer.com'+link['href'])
 
-    if(link.has_attr('href')):
-        for k in job_split:
-            if(k in link['href']):
-               links.append("https://www.livecareer.com"+link['href'])
+    for link in links:
+        driver.get(link)
+        elem = driver.find_element_by_id('document')
+        resume = h.handle(elem.get_attribute('innerHTML')).encode('utf-8')
+        #insert saving code here
 
-resumes = []
 
-for link in links:
-    driver.get(link)
-    elem = driver.find_element_by_id('document')
-    resume = h.handle(elem.get_attribute('innerHTML'))
-    resumes.append(resume)
-
-print(resumes)
+scraper('Python Developer')
